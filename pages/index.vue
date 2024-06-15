@@ -1,5 +1,5 @@
 <template>
-  <div class="my-container">
+  <div class="super-container">
     <UTooltip :text="isDark ? 'Turn on the lights' : 'Apaga las luces'" class="brightness-button"
       :shortcuts="['⌘', 'i']" :popper="{ placement: 'left' }">
       <UButton :icon="isDark ? 'i-heroicons-moon-20-solid' : 'i-heroicons-sun-20-solid'" color="yellow" variant="ghost"
@@ -52,7 +52,7 @@
             <div class="flex items-center gap-2 relative truncate">
               <img v-if="item.label === 'Maker'" src="~/assets/images/triangle.png" class="w-4 h-4" />
               <img v-if="item.label === 'Artist'" src="~/assets/images/ellipse.png" class="w-4 h-4" />
-              <img v-if="item.label === 'World'" src="~/assets/images/squarre.png" class="w-4 h-4" />
+              <img v-if="item.label === 'World'" src="~/assets/images/square.png" class="w-4 h-4" />
               <h2 class="truncate tab-title">{{ item.label }}</h2>
             </div>
 
@@ -275,7 +275,7 @@
     scale: 0.8;
     position: absolute;
     top: 2.5rem;
-    left: 1.5rem;
+    left: 0.5rem;
   }
 }
 
@@ -286,10 +286,9 @@
   align-items: center;
 
   margin: 0rem auto;
-  margin-top: 6.4rem;
   max-width: 90%;
   width: 90%;
-
+  height: 100vh;
 
   .hero-top-bar {
     width: 770px;
