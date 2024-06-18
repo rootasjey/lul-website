@@ -9,7 +9,7 @@
         <p>{{ error }}</p>
       </div>
 
-      <UCard v-for="project in projects" class="project-card" :ui="{ ring: '', shadow: '' }">
+      <UCard v-for="project in pageItems" class="project-card" :ui="{ ring: '', shadow: '' }">
         <div class="content">
           <div class="flex flex-col justify-between">
             <div class="texts">
@@ -27,9 +27,8 @@
               :label="project.cta.label" class="explore-button rounded-full flex justify-center" />
           </div>
 
-          <img
-            :src="project.image"
-            alt="">
+          <NuxtImg
+            :src="project.image.src" :alt="project.image.alt" />
         </div>
       </UCard>
     </UContainer>
@@ -41,14 +40,17 @@
   import { ref, type Ref, computed, onMounted, unref } from 'vue'
   import { useCollection, useFirestore } from 'vuefire'
 
-  const projects = ref([
+  const pageItems = ref([
     {
       id: 0,
       title: "La Zébrelle",
       subtitle: "Creator",
       types: ["web"],
       summary: "Welcome to a Savannah which embraces differences! The Savannah is an educational platform aimed at raising awareness about neurodiversity and differences, offering fun and educational activities for both children and adults!",
-      image: "images/la-zebrelle.png",
+      image: {
+        src: "/images/la-zebrelle.png",
+        alt: "La Zébrelle",
+      },
       cta: {
         label: "Explore",
         href: "",
@@ -60,7 +62,10 @@
       subtitle: "Creator",
       types: ["app"],
       summary: "Welcome to a Savannah which embraces differences! The Savannah is an educational platform aimed at raising awareness about neurodiversity and differences, offering fun and educational activities for both children and adults!",
-      image: "images/mars-app.png",
+      image: {
+        src: "/images/mars-app.png",
+        alt: "Mars App",
+      },
       cta: {
         label: "Read",
         href: "",
@@ -72,7 +77,10 @@
       subtitle: "Associate",
       types: ["marketplace"],
       summary: "Welcome to a Savannah which embraces differences! The Savannah is an educational platform aimed at raising awareness about neurodiversity and differences, offering fun and educational activities for both children and adults!",
-      image: "images/africa-vivre.png",
+      image: {
+        src: "/images/africa-vivre.png",
+        alt: "Africa Vivre",
+      },
       cta: {
         label: "Explore",
         href: "",
@@ -84,7 +92,10 @@
       subtitle: "Co-worker",
       types: ["app"],
       summary: "Welcome to a Savannah which embraces differences! The Savannah is an educational platform aimed at raising awareness about neurodiversity and differences, offering fun and educational activities for both children and adults!",
-      image: "images/kwotes-app.png",
+      image: {
+        src: "/images/kwotes-app.png",
+        alt: "Kwotes App",
+      },
       cta: {
         label: "Download on the App Store",
         href: "",
@@ -92,11 +103,14 @@
     },
     {
       id: 3,
-      title: "MJ Music Days",
+      title: "MJ Music Day",
       subtitle: "Co-worker",
       types: ["web"],
       summary: "Welcome to a Savannah which embraces differences! The Savannah is an educational platform aimed at raising awareness about neurodiversity and differences, offering fun and educational activities for both children and adults!",
-      image: "images/mj-music-play.png",
+      image: {
+        src: "/images/mj-music-day.png",
+        alt: "MJ Music Day",
+      },
       cta: {
         label: "Explore",
         href: "",

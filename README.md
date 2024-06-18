@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/icons/app-icon.png" alt="rootasjey's universe app icon" width="70"/>
+  <img src="./public/images/app-icon.svg" alt="rootasjey's universe app icon" width="70"/>
 </p>
 
 <p align="center">

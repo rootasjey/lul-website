@@ -9,7 +9,7 @@
         <p>{{ error }}</p>
       </div>
 
-      <UCard v-for="project in projects" class="project-card" :ui="{ ring: '', shadow: '' }">
+      <UCard v-for="project in pageItems" class="project-card" :ui="{ ring: '', shadow: '' }">
         <div class="content">
           <div class="flex flex-col justify-between">
             <div class="texts">
@@ -27,9 +27,7 @@
               :label="project.cta.label" class="explore-button rounded-full flex justify-center" />
           </div>
 
-          <img
-            :src="project.image"
-            alt="">
+          <NuxtImg :src="project.image.src" :alt="project.image.alt" width="360" height="300" />
         </div>
       </UCard>
     </UContainer>
@@ -41,13 +39,16 @@
   import { ref, type Ref, computed, onMounted, unref } from 'vue'
   import { useCollection, useFirestore } from 'vuefire'
 
-  const projects = ref([
+  const pageItems = ref([
     {
       id: 0,
       title: "La Zébrelle",
       subtitle: "Book for kids",
       summary: "Welcome to a Savannah which embraces differences! The Savannah is an educational platform aimed at raising awareness about neurodiversity and differences, offering fun and educational activities for both children and adults!",
-      image: "images/la-zebrelle-book.png",
+      image: {
+        src: "/images/la-zebrelle-book.png",
+        alt: "La Zébrelle Book",
+      },
       types: [],
       cta: {
         label: "Buy on Amazon",
@@ -59,7 +60,10 @@
       title: "Sono Lucilla • Design",
       subtitle: "UI/Graphic Design",
       summary: "Welcome to a Savannah which embraces differences! The Savannah is an educational platform aimed at raising awareness about neurodiversity and differences, offering fun and educational activities for both children and adults!",
-      image: "images/mars-app.png",
+      image: {
+        src: "/images/sono-lucilla-design.png",
+        alt: "Sono Lucilla Design",
+      },
       types: [],
       cta: {
         label: "Explore",
@@ -71,7 +75,10 @@
       title: "Sono Lucilla • Store",
       subtitle: "Illustrations",
       summary: "Welcome to a Savannah which embraces differences! The Savannah is an educational platform aimed at raising awareness about neurodiversity and differences, offering fun and educational activities for both children and adults!",
-      image: "images/africa-vivre.png",
+      image: {
+        src: "/images/sono-lucilla-store.png",
+        alt: "Sono Lucilla Store",
+      },
       types: [],
       cta: {
         label: "Buy",
@@ -83,7 +90,10 @@
       title: "Mickey Mouse Comic",
       subtitle: "Creator",
       summary: "Welcome to a Savannah which embraces differences! The Savannah is an educational platform aimed at raising awareness about neurodiversity and differences, offering fun and educational activities for both children and adults!",
-      image: "images/kwotes-app.png",
+      image: {
+        src: "/images/mickey-mouse-comic.png",
+        alt: "Mickey Mouse Comic",
+      },
       types: [],
       cta: {
         label: "Work in progress",
@@ -95,7 +105,10 @@
       title: "Sono Lucilla • Music",
       subtitle: "SoundCloud",
       summary: "Welcome to a Savannah which embraces differences! The Savannah is an educational platform aimed at raising awareness about neurodiversity and differences, offering fun and educational activities for both children and adults!",
-      image: "images/mj-music-play.png",
+      image: {
+        src: "/images/sono-lucilla-music.png",
+        alt: "Sono Lucilla Music",
+      },
       types: [],
       cta: {
         label: "Listen",
@@ -173,8 +186,6 @@
         flex-direction: row;
         
         img {
-          width: 52%;
-          object-fit: cover;
           border-radius: 1rem;
         }
 

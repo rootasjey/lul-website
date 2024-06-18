@@ -25,7 +25,7 @@
     <div v-if="categorySelected === 'tools'" class="tools">
       <UCard v-for="tool in tools" class="tool-card" :ui="{ body: '' }">
         <div class="flex flex-row">
-          <img class="cursor-pointer" :src="tool.image" :alt="tool.label" @click="openLink(tool.href)" />
+          <NuxtImg class="cursor-pointer" :src="tool.image.src" :alt="tool.label" @click="openLink(tool.href)" />
           <div class="card-content-text">
             <h1 class="title">{{ tool.label }}</h1>
             <p class="description">
@@ -46,10 +46,7 @@
     <div v-if="categorySelected === 'resources'" class="resources">
       <div v-for="resource in resources" class="resource">
         <a :href="resource.href" target="_blank">
-          <img
-            :src="resource.image"
-            alt=""
-          />
+          <NuxtImg :src="resource.image.src" :alt="resource.image.alt" />
         </a>
       </div>
     </div>
@@ -57,45 +54,48 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue'
-
-const colorMode = useColorMode()
-const isDark = computed({
-  get() {
-    return colorMode.value === 'dark'
-  },
-  set() {
-    colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark'
-  }
-})
-
 const categorySelected = ref("resources")
 
 const resources = ref([
   {
     label: 'Finding Neverland',
     href: 'https://en.wikipedia.org/wiki/Finding_Neverland_(film)',
-    image: 'images/finding-neverland.png',
+    image: {
+      src: 'images/resources/finding-neverland.jpg',
+      alt: 'finding neverland',
+    },
   },
   {
     label: 'Kill Bill',
     href: 'https://en.wikipedia.org/wiki/Kill_Bill:_Volume_1',
-    image: 'images/kill-bill.png',
+    image: {
+      src: "images/resources/kill-bill.jpg",
+      alt: 'kill bill',
+    },
   },
   {
     label: 'Midnight in Paris',
     href: 'https://en.wikipedia.org/wiki/Midnight_in_Paris',
-    image: 'images/midnight-in-paris.png',
+    image: {
+      src: "images/resources/midnight-in-paris.jpg",
+      alt: 'midnight in paris',
+    },
   },
   {
     label: 'Carl Gustav Jung',
     href: 'https://en.wikipedia.org/wiki/Midnight_in_Paris',
-    image: 'images/carl-gustav-jung.png',
+    image: {
+      src: "images/resources/carl-gustav-jung.jpg",
+      alt: 'carl gustav jung',
+    },
   },
   {
     label: 'The Forty Rules of Love',
     href: 'https://en.wikipedia.org/wiki/The_Forty_Rules_of_Love',
-    image: 'images/the-forty-rules-of-love.png',
+    image: {
+      src: "images/resources/the-forty-rules-of-love.jpg",
+      alt: 'the forty rules of love',
+    },
   },
 ])
 
@@ -105,21 +105,27 @@ const tools = ref([
     label: 'Atoms',
     href: 'https://apps.apple.com/us/app/atoms-from-atomic-habits/id6474421906',
     description: "A great and powerful app to be a better You! The official Atomic Habits app",
-    image: 'https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/2f/df/86/2fdf8631-eeba-effb-f2c5-83db244f2ae9/AppIcon-0-1x_U007emarketing-0-10-0-85-220-0.png/460x0w.webp',
+    image: {
+      src: "/images/atoms-app.svg",
+    },
   },
   {
     type: 'newsletter',
     label: 'Faster Than Normal',
     href: 'https://www.fasterthannormal.co/',
     description: "Stories, ideas, and frameworks from the world's most prolific people and companies.",
-    image: 'https://cdn.prod.website-files.com/64338c02463a20de31c136c4/64503c9942c29293d34ad75d_Logo%20(3).png',
+    image: {
+      src: "/images/faster-than-normal.svg",
+    },
   },
   {
     type: 'podcast',
     label: 'Multipreneur.xyz',
     href: 'https://multipreneur.xyz/',
     description: "Un podcast sur le Multipreneuriat : le fait de posséder et gérer plusieurs entreprises en même temps",
-    image: 'https://is1-ssl.mzstatic.com/image/thumb/Podcasts116/v4/d8/74/bd/d874bdf6-1165-310d-fc10-b2fc42914fbd/mza_586130523188013549.jpg/626x0w.webp',
+    image: {
+      src: "/images/multipreneur-xyz.svg",
+    },
   },
 ])
 
@@ -186,13 +192,13 @@ const openLink = (href: string) => {
         height: 200px;
         object-fit: cover;
         border-radius: 1rem;
+        border: 3px solid var(--tertiary-color);
       }
     }
 
     .resource:hover {
-      transform: scale(1.025) translateY(-5px);
+      transform: scale(1.025) translateY(-2px);
       transition: transform 0.3s ease-in-out;
-      /* transition-timing-function: cubic-bezier(0,1.5,0.5,1); */
     }
   }
 
